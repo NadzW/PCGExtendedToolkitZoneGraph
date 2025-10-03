@@ -33,6 +33,8 @@ public:
 	}
 #endif
 
+UPCGExClusterToZoneGraphSettings(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
 	//~Begin UPCGSettings
 #if WITH_EDITOR
 	PCGEX_NODE_INFOS(ClusterToZoneGraph, "Cluster to Zone Graph", "Create Zone Graph from clusters.");

@@ -20,6 +20,21 @@ PCGExData::EIOInit UPCGExClusterToZoneGraphSettings::GetMainOutputInitMode() con
 PCGEX_INITIALIZE_ELEMENT(ClusterToZoneGraph)
 PCGEX_ELEMENT_BATCH_EDGE_IMPL_ADV(ClusterToZoneGraph)
 
+UPCGExClusterToZoneGraphSettings::UPCGExClusterToZoneGraphSettings(
+	const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
+{
+#if WITH_EDITOR
+	if (const UZoneGraphSettings* ZGS = GetDefault<UZoneGraphSettings>())
+	{
+		if (const FZoneLaneProfile* Prof = ZGS->GetDefaultLaneProfile())
+		{
+			LaneProfile = *Prof;
+		}
+	}
+#endif
+}
+
 bool FPCGExClusterToZoneGraphElement::Boot(FPCGExContext* InContext) const
 {
 	PCGEX_CONTEXT_AND_SETTINGS(ClusterToZoneGraph)
